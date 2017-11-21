@@ -1,0 +1,30 @@
+body,html {
+    height: 100%;
+  }
+  
+  .btn-new-quote {
+      color: #0C0C0D;
+      background-color: transparent;
+      border-color: #414147;
+  }
+  
+  .btn-new-quote:hover {
+      color: #0C0C0D;
+      background-color: #9A989E;
+      border-color: #0C0C0D;
+  }
+  
+  #tweet {
+      color: RGB(100, 100, 100)
+  }
+  
+  #tweet:hover {
+      color: RGB(50, 50, 50)
+  }
+  
+  
+  .jumbotron {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+  }

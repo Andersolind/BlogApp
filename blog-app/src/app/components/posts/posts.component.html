@@ -1,0 +1,29 @@
+<div class="float-right">
+    <input class="form-control rounded-0 py-2 col-lg-12" name="term" [(ngModel)]="term" type="search" value="search" placeholder="Search"
+      id="example-search-input">
+  </div>
+  <section class="jumbotron-background-padding text-center">
+    <div class="container">
+      <div class="row">
+        <div class="accordian-width-padding" id="accordion" role="tablist" aria-multiselectable="true">
+          <div *ngFor="let blog of items  | filter : term | sortBy: 'title'; let i=index" class="card accordion-panel">
+            <div class="card-block accordion-heading" role="tab" id="headingOne">
+              <h3 class="card-title accordion-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#{{i}}" aria-expanded="true" aria-controls="collapseOne">
+                  {{blog.title}} - ({{blog.comments}})
+                </a>
+              </h3>
+            </div>
+            <div id="{{i}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+              <div class="accordion-content">
+                <div class="divider"></div>
+                <p class="lead">
+                  {{blog.text}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

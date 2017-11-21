@@ -1,0 +1,18 @@
+<div class="center-div">
+  <form #blogForm="ngForm" class="form-inline justify-content-center">
+
+    <label for="name" class="col-lg-2">UserName:</label>
+    <div class="input-group mx-auto">
+      <input type="text" required [(ngModel)]="userName" name="name" #name="ngModel" class="form-control" placeholder="User Name">
+     
+    </div>
+
+    <button type="button" (click)="userLogin(blogForm)" [disabled]="blogForm.invalid" class="btn btn-primary my-2 my-sm-0">Login</button>
+  
+    <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
+        <div [hidden]="!name.errors.required">
+          User Name is required!
+        </div>
+      </div>
+  </form>
+</div>
