@@ -9,7 +9,7 @@ export class AuthenticationService {
   testUrl = 'https://jsonplaceholder.typicode.com/users/';
   repsonse: any;
   isAuthenticated = false;
-  tempUser: UserObject;
+  tempUser: any;
   constructor(
     private _router: Router,
     private http: HttpClient,
@@ -19,11 +19,11 @@ export class AuthenticationService {
   login(userName: string): boolean {
     this.http.get(this.testUrl, { observe: 'response' }).subscribe(data => {
       this.repsonse = data.body;
-      this.tempUser = this.repsonse.filter(x => x.name === userName);
-      if (this.tempUser) {
+      const tempResponse = this.repsonse.filter(x => x.name === userName);
+      if (tempResponse) {
         this.isAuthenticated = true;
-        localStorage.setItem('currentUser', JSON.stringify(this.tempUser));
-        this.router.navigate(['/home']);
+        localStorage.setItem('currentUser', JSON.stringify(tempResponse));
+        this.router.navigate(['/home', {outlets: {firstchild: ['post']}}]);
       }
     }); // return this.http
     return this.isAuthenticated;
@@ -33,8 +33,8 @@ export class AuthenticationService {
     this._router.navigate(['/']);
   }
   checkCredentials() {
-    if (localStorage.getItem('currentUser') === null) {
-      this._router.navigate(['Login']);
+    if (!localStorage.currentUser) {
+      this._router.navigate(['/login']);
     } else {
       this._router.navigate(['/home']);
     }
